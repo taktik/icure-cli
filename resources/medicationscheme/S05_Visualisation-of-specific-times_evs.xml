@@ -1,0 +1,1493 @@
+<?xml version="1.0" encoding="UTF-8"?><kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20161201</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">1990001916.2018041091404821054</id>
+        <date>2018-04-19</date>
+        <time>14:54:33</time>
+        <sender>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                <cd S="CD-HCPARTY" SV="1.7">hub</cd>
+                <name>VITALINK</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                <id S="INSS" SV="1.0">75041414469</id>
+                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+                <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
+                <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
+                <firstname>Veerle</firstname>
+                <familyname>Moermans</familyname>
+                <address>
+                    <cd S="CD-ADDRESS" SV="1.0"/>
+                    <nis>24062</nis>
+                </address>
+            </hcparty>
+            <hcparty>
+                <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_2264d708-0d49-4aca-96f0-f7acb32cf5c2</id>
+                <cd S="CD-HCPARTY" SV="1.1">APPLICATION</cd>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+        <patient>
+            <id S="ID-PATIENT" SV="1.0">92061925582</id>
+            <firstname>Benjamin</firstname>
+            <familyname>Van Rietvelde</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+        </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme</id>
+            <cd S="CD-TRANSACTION" SV="1.0">medicationscheme</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                    <cd S="CD-HCPARTY" SV="1.7">hub</cd>
+                    <name>VITALINK</name>
+                </hcparty>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <version>72</version>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">2</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/33398/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <compoundprescription L="nl">magistrale bereiding 1 - compoundprescription</compoundprescription>
+                </content>
+                <text L="nl">magistrale bereiding 1 - name</text>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:300===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">3</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/72700/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2663649</intendedcd>
+                        <intendedname>Mezavant 1200 Mg (60 Tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:301===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">4</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/33614/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3067899</intendedcd>
+                        <intendedname>Colitofalk 1,5 G 90 Zakjes</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:01:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:302===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">5</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/22020/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2329969</intendedcd>
+                        <intendedname>Aspirine 500 mg (36 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>11:45:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:303===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">6</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/05228/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1365543</intendedcd>
+                        <intendedname>Asaflow 80 mg (56 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>12:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:304===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">7</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/81703/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2575405</intendedcd>
+                        <intendedname>Acidine 75 mg (20 stuks)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:305===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">8</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/90964/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3010154</intendedcd>
+                        <intendedname>Pentasa 1 G (28 Zetpillen)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:01:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:306===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">9</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/91220/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1652288</intendedcd>
+                        <intendedname>Mesalazine Teva 500 Mg (300 Tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:01:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:307===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">10</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/94060/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">0120212</intendedcd>
+                        <intendedname>Androcur 10 mg (3 Blisterverpakking)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>11:45:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:308===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">11</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/74321/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3040532</intendedcd>
+                        <intendedname>ASA EG 100 mg (168 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>12:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:309===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">12</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/47337/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3434792</intendedcd>
+                        <intendedname>Atorvastatine Teva 40 mg (100 stuks)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:01:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>11:45:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:310===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">13</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/69433/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1645167</intendedcd>
+                        <intendedname>Bisoprolol Sandoz 5 mg (28 stuks)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:01:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>12:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:311===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">14</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/74452/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3001898</intendedcd>
+                        <intendedname>Alka-Seltzer 324 mg (20 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>11:45:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>12:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:312===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">15</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/55989/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <compoundprescription L="nl">magistrale bereiding 2 - compoundprescription</compoundprescription>
+                </content>
+                <text L="nl">magistrale bereiding 2 - name</text>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:01:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:313===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">16</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/63111/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">0668384</intendedcd>
+                        <intendedname>Claversal 500 Mg 60 Zetpillen</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:01:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>11:45:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:314===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">17</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/86419/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1112481</intendedcd>
+                        <intendedname>Cardegic 160 mg (30 zakjes)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:01:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>11:45:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>12:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:315===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">18</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/74403/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <compoundprescription L="nl">magistrale bereiding 3 - compoundprescription</compoundprescription>
+                </content>
+                <text L="nl">magistrale bereiding 3 - name</text>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>10:01:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>11:45:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>12:00:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>12:15:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:316===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">19</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/31657/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1608496</intendedcd>
+                        <intendedname>Claversal 500 Mg 300 Tabletten</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>12:15:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:317===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">20</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/44461/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:54:31</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1622463</intendedcd>
+                        <intendedname>Claversal 500 Mg 120 Zetpillen</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-01-01</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">M</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>09:59:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                    <date>2017-01-12</date>
+                    <daytime>
+                        <time>12:15:00</time>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00002</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00013</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:318===</instructionforpatient>
+            </item>
+        </transaction>
+    </folder>
+</kmehrmessage>
