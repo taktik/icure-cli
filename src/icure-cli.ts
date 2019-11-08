@@ -6,7 +6,7 @@ import {
 	UserDto
 } from 'icc-api'
 import { forEachDeep, mapDeep } from './reduceDeep'
-import { flatMap } from 'lodash'
+import { flatMap, chunk } from 'lodash'
 import { Api } from './api'
 import { format, addMonths, addYears } from 'date-fns'
 
@@ -108,9 +108,15 @@ vorpal
 		let user = await api.usericc.getCurrentUser()
 
 		await Promise.all(args.hcpIds.map(async (hcpId: string) => {
-			const batchIds = await api.contacticc.matchBy(new Filter({ healthcarePartyId: hcpId, $type: 'ContactByHcPartyTagCodeDateFilter' }))
+			const batchIds = await api.contacticc.matchBy(new Filter({
+				healthcarePartyId: hcpId,
+				$type: 'ContactByHcPartyTagCodeDateFilter'
+			}))
 			const batch = batchIds
-				.reduce((acc: {[key: string]: number}, id: string) => { acc[id] = 1; return acc }, {})
+				.reduce((acc: { [key: string]: number }, id: string) => {
+					acc[id] = 1
+					return acc
+				}, {})
 			byHcp[hcpId] = batch
 			Object.assign(all, batch)
 		}))
@@ -145,12 +151,43 @@ vorpal
 	})
 
 vorpal
+	.command('shareall [hcpIds...]', 'Share with hcp ids')
+	.action(async function(this: CommandInstance, args: Args) {
+		let user = await api.usericc.getCurrentUser()
+
+		const hcpIds = args.hcpIds as string[]
+		const allIds = await api.patienticc.listPatientsIds(user.healthcarePartyId, undefined, undefined, 20000)
+
+		chunk(allIds, 100).reduce(async (p, ids) => {
+			await p
+			const patients = await api.patienticc.getPatientsWithUser(user, new ListOfIdsDto({ ids })) // Get them to fix them
+
+			this.log(JSON.stringify((await patients.reduce(async (p: Promise<any>, pat: PatientDto) => {
+				const prev = await p
+				try {
+					return prev.concat([await api.patienticc.share(user, pat.id!, user.healthcarePartyId!, hcpIds, hcpIds.reduce((map,hcpId) => Object.assign(map, { [hcpId]: ['all'] }), {}))])
+				} catch (e) {
+					console.log(e)
+					return prev
+				}
+			}
+				, Promise.resolve([]))).map((x: any) => x.statuses), undefined, ' '))
+
+		}, Promise.resolve())
+
+	})
+
+vorpal
 	.command('imp-ms [path]', 'Convert local medication scheme xml to services')
 	.action(async function(this: CommandInstance, args: Args) {
 		const user = await api.usericc.getCurrentUser()
-		const doc = await api.documenticc.createDocument({ id: api.cryptoicc.randomUuid(), author: user.id, responsible: user.healthcarePartyId })
+		const doc = await api.documenticc.createDocument({
+			id: api.cryptoicc.randomUuid(),
+			author: user.id,
+			responsible: user.healthcarePartyId
+		})
 		await api.documenticc.setAttachment(doc.id, undefined, fs.readFileSync(args.path).buffer)
-		latestImport = (await api.bekmehricc.importMedicationScheme(doc.id, undefined, true, undefined, 'fr',{}))[0]
+		latestImport = (await api.bekmehricc.importMedicationScheme(doc.id, undefined, true, undefined, 'fr', {}))[0]
 		this.log(JSON.stringify(latestImport))
 	})
 
