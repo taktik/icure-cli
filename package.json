@@ -52,7 +52,7 @@
 	"dependencies": {
 		"colors": "^1.4.0",
 		"date-fns": "^2.3.0",
-		"icc-api": "1.0.200",
+		"icc-api": "1.0.204",
 		"lodash": "^4.17.15",
 		"mkdirp": "^0.5.1",
 		"nexe": "^3.3.2",
