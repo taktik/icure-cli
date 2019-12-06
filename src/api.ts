@@ -6,13 +6,19 @@ import {
 	IccHelementXApi,
 	iccPatientApi,
 	IccUserXApi,
-	IccInvoiceXApi, IccDocumentXApi, IccClassificationXApi, iccEntityrefApi, UserDto, iccBeKmehrApi, IccFormXApi
+	IccInvoiceXApi,
+	IccDocumentXApi,
+	IccClassificationXApi,
+	iccEntityrefApi,
+	UserDto,
+	iccBeKmehrApi,
+	IccFormXApi,
+	IccCalendarItemXApi
 } from 'icc-api'
 import fetch from 'node-fetch'
 import * as WebCrypto from 'node-webcrypto-ossl'
 
 export class Api {
-
 	private _entityreficc: iccEntityrefApi
 	private _usericc: IccUserXApi
 	private _hcpartyicc: IccHcpartyXApi
@@ -23,6 +29,7 @@ export class Api {
 	private _invoiceicc: IccInvoiceXApi
 	private _documenticc: IccDocumentXApi
 	private _classificationicc: IccClassificationXApi
+	private _calendaritemicc: IccCalendarItemXApi
 	private _bekmehricc: iccBeKmehrApi
 	private _patienticc: IccPatientXApi
 
@@ -44,8 +51,9 @@ export class Api {
 		this._documenticc = new IccDocumentXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._helementicc = new IccHelementXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._classificationicc = new IccClassificationXApi(host, headers, this._cryptoicc, fetchImpl)
+		this._calendaritemicc = new IccCalendarItemXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._bekmehricc = new iccBeKmehrApi(host, headers, fetchImpl)
-		this._patienticc = new IccPatientXApi(host, headers, this._cryptoicc, this._contacticc, this._formicc, this._helementicc, this._invoiceicc, this._documenticc, this._hcpartyicc, this._classificationicc, ['note'], fetchImpl)
+		this._patienticc = new IccPatientXApi(host, headers, this._cryptoicc, this._contacticc, this._formicc, this._helementicc, this._invoiceicc, this._documenticc, this._hcpartyicc, this._classificationicc, this._calendaritemicc,['note'], fetchImpl)
 
 		this._usericc.getCurrentUser().then((u: UserDto) => this._currentUser = u)
 	}
@@ -96,6 +104,10 @@ export class Api {
 
 	get entityreficc(): iccEntityrefApi {
 		return this._entityreficc
+	}
+
+	get calendaritemicc(): IccCalendarItemXApi {
+		return this._calendaritemicc
 	}
 
 	get currentUser(): UserDto | null {
