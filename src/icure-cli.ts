@@ -1,20 +1,23 @@
 import fetch from 'node-fetch'
 import {
 	ContactDto,
-	Filter, FilterChain,
-	ImportResultDto, ListOfIdsDto, MedicationSchemeExportInfoDto, PatientDto,
+	Filter,
+	ImportResultDto,
+	ListOfIdsDto,
+	MedicationSchemeExportInfoDto,
+	PatientDto,
 	UserDto
 } from 'icc-api'
-import { forEachDeep, mapDeep } from './reduceDeep'
-import { flatMap, chunk } from 'lodash'
+import { chunk, flatMap } from 'lodash'
+import { parse, format, addDays } from 'date-fns'
 import { Api } from './api'
-import { format, addMonths, addYears } from 'date-fns'
 
 import * as colors from 'colors/safe'
 import { Args, CommandInstance } from 'vorpal'
 
 require('node-json-color-stringify')
 
+const request = require('request')
 const path = require('path')
 const fs = require('fs')
 const vorpal = new (require('vorpal'))()
@@ -90,7 +93,10 @@ vorpal
 vorpal
 	.command('whoami', 'Logged user info')
 	.action(async function(this: CommandInstance, args: Args) {
-		this.log((await api.usericc.getCurrentUser()).login + '@' + options.host)
+		let user = await api.usericc.getCurrentUser()
+		this.log(user.login + '@' + options.host)
+		this.log(JSON.stringify(user, null, ' '))
+		this.log(JSON.stringify(await api.hcpartyicc.getCurrentHealthcareParty(), null, ' '))
 	})
 
 vorpal
@@ -156,16 +162,16 @@ vorpal
 		let user = await api.usericc.getCurrentUser()
 
 		const hcpIds = args.hcpIds as string[]
-		const allIds = await api.patienticc.listPatientsIds(user.healthcarePartyId, undefined, undefined, 20000)
+		const allIds = await api.patienticc.listPatientsIds(user.healthcarePartyId, undefined, undefined, 50000)
 
-		chunk(allIds.rows, 100).reduce(async (p, ids) => {
+		chunk(allIds.rows.filter((r: any, idx: number) => idx >= 19900), 100).reduce(async (p, ids) => {
 			await p
 			const patients = await api.patienticc.getPatientsWithUser(user, new ListOfIdsDto({ ids })) // Get them to fix them
 
 			this.log(JSON.stringify((await patients.reduce(async (p: Promise<any>, pat: PatientDto) => {
 				const prev = await p
 				try {
-					return prev.concat([await api.patienticc.share(user, pat.id!, user.healthcarePartyId!, hcpIds, hcpIds.reduce((map,hcpId) => Object.assign(map, { [hcpId]: ['all'] }), {}))])
+					return prev.concat([await api.patienticc.share(user, pat.id!, user.healthcarePartyId!, hcpIds, hcpIds.reduce((map, hcpId) => Object.assign(map, { [hcpId]: ['all'] }), {}))])
 				} catch (e) {
 					console.log(e)
 					return prev
@@ -189,6 +195,54 @@ vorpal
 		await api.documenticc.setAttachment(doc.id, undefined, fs.readFileSync(args.path).buffer)
 		latestImport = (await api.bekmehricc.importMedicationScheme(doc.id, undefined, true, undefined, 'fr', {}))[0]
 		this.log(JSON.stringify(latestImport))
+	})
+
+vorpal
+	.command('shamir [secret] [threshold] [hcpIds...]', 'Generate shamir partitions for hcpIds')
+	.action(async function(this: CommandInstance, args: Args) {
+		const user = await api.usericc.getCurrentUser()
+
+		this.log((await Promise.all((args.hcpIds.length > 1 ? api.cryptoicc.shamir.share(args.secret, args.hcpIds.length, Number(args.threshold)) : [args.secret]).map(
+			async (s, idx) => {
+				let keys = await api.cryptoicc.decryptAndImportAesHcPartyKeysForDelegators([user.healthcarePartyId], args.hcpIds[idx])
+				const hcpKey = keys.find(k => k.delegatorId === user.healthcarePartyId)!
+				return [hcpKey.delegatorId, api.cryptoicc.utils.ua2hex(await api.cryptoicc.AES.encrypt(hcpKey.key, api.cryptoicc.utils.hex2ua(s)))]
+			}
+		))).map(([k, v]) => `${k} : ${v}`).join('\n'))
+	})
+
+vorpal
+	.command('ibh [year]', 'Inject bank holidays')
+	.action(async function(this: CommandInstance, args: Args) {
+		const user = await api.usericc.getCurrentUser()
+
+		request(`https://jours-feries-france.antoine-augusti.fr/api/${args.year}`, options, async (error: any, res: any, body: string) => {
+			if (error) {
+				return this.log(error)
+			}
+
+			if (!error && res.statusCode === 200) {
+				await Promise.all(JSON.parse(body).map(async (bh: any) => {
+					this.log(`Injecting ${bh.date} : ${bh.nom_jour_ferie}`)
+					return api.timetableicc.createTimeTable(
+						await api.timetableicc.newInstance(user, {
+							agendaId: user.id,
+							name: bh.nom_jour_ferie,
+							startTime: +format(parse(bh.date, 'yyyy-MM-dd', 0), 'yyyyMMddHHmmss'),
+							endTime: +format(addDays(parse(bh.date, 'yyyy-MM-dd', 0), 1), 'yyyyMMddHHmmss'),
+							tags: [
+								{
+									type: 'LUTA-DAY-AVAILABILITY',
+									version: '1.0',
+									code: 'bankholiday'
+								}
+							]
+						})
+					)
+				}))
+			}
+
+		})
 	})
 
 vorpal

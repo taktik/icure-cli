@@ -13,7 +13,7 @@ import {
 	UserDto,
 	iccBeKmehrApi,
 	IccFormXApi,
-	IccCalendarItemXApi
+	IccCalendarItemXApi, IccTimeTableXApi
 } from 'icc-api'
 import fetch from 'node-fetch'
 import * as WebCrypto from 'node-webcrypto-ossl'
@@ -30,6 +30,7 @@ export class Api {
 	private _documenticc: IccDocumentXApi
 	private _classificationicc: IccClassificationXApi
 	private _calendaritemicc: IccCalendarItemXApi
+	private _timetableicc: IccTimeTableXApi
 	private _bekmehricc: iccBeKmehrApi
 	private _patienticc: IccPatientXApi
 
@@ -51,6 +52,7 @@ export class Api {
 		this._documenticc = new IccDocumentXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._helementicc = new IccHelementXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._classificationicc = new IccClassificationXApi(host, headers, this._cryptoicc, fetchImpl)
+		this._timetableicc = new IccTimeTableXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._calendaritemicc = new IccCalendarItemXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._bekmehricc = new iccBeKmehrApi(host, headers, fetchImpl)
 		this._patienticc = new IccPatientXApi(host, headers, this._cryptoicc, this._contacticc, this._formicc, this._helementicc, this._invoiceicc, this._documenticc, this._hcpartyicc, this._classificationicc, this._calendaritemicc,['note'], fetchImpl)
@@ -108,6 +110,10 @@ export class Api {
 
 	get calendaritemicc(): IccCalendarItemXApi {
 		return this._calendaritemicc
+	}
+
+	get timetableicc(): IccTimeTableXApi {
+		return this._timetableicc
 	}
 
 	get currentUser(): UserDto | null {
