@@ -164,7 +164,7 @@ vorpal
 		const hcpIds = args.hcpIds as string[]
 		const allIds = await api.patienticc.listPatientsIds(user.healthcarePartyId, undefined, undefined, 50000)
 
-		chunk(allIds.rows.filter((r: any, idx: number) => idx >= 19900), 100).reduce(async (p, ids) => {
+		chunk(allIds.rows, 100).reduce(async (p, ids) => {
 			await p
 			const patients = await api.patienticc.getPatientsWithUser(user, new ListOfIdsDto({ ids })) // Get them to fix them
 
