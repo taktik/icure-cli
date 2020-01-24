@@ -157,28 +157,6 @@ vorpal
 	})
 
 vorpal
-	.command('share <hcpId> [patIds...]', 'Share with hcp ids')
-	.action(async function(this: CommandInstance, args: Args) {
-		let user = await api.usericc.getCurrentUser()
-
-		const hcpId = args.hcpId
-		const ids = args.patIds
-
-		const patients = await api.patienticc.getPatientsWithUser(user, new ListOfIdsDto({ ids })) // Get them to fix them
-
-		this.log(JSON.stringify((await patients.reduce(async (p: Promise<any>, pat: PatientDto) => {
-			const prev = await p
-			try {
-				return prev.concat([await api.patienticc.share(user, pat.id!, user.healthcarePartyId!, [hcpId], { [hcpId]: ['all'] })])
-			} catch (e) {
-				console.log(e)
-				return prev
-			}
-		}
-			, Promise.resolve([]))).map((x: any) => x.statuses), undefined, ' '))
-	})
-
-vorpal
 	.command('export [patIds...]', 'Share with hcp ids')
 	.action(async function(this: CommandInstance, args: Args) {
 		let user = await api.usericc.getCurrentUser()
