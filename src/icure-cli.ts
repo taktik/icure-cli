@@ -1,15 +1,7 @@
 import fetch from 'node-fetch'
-import {
-	ContactDto,
-	Filter,
-	ImportResultDto,
-	ListOfIdsDto,
-	MedicationSchemeExportInfoDto,
-	PatientDto,
-	UserDto
-} from 'icc-api'
-import { chunk, flatMap } from 'lodash'
-import { parse, format, addDays } from 'date-fns'
+import { ContactDto, DelegationDto, Filter, ImportResultDto, ListOfIdsDto, PatientDto, UserDto } from 'icc-api'
+import { chunk, flatMap, uniqBy } from 'lodash'
+import { addDays, format, parse } from 'date-fns'
 import { Api } from './api'
 
 import * as colors from 'colors/safe'
@@ -210,6 +202,90 @@ vorpal
 				return [hcpKey.delegatorId, api.cryptoicc.utils.ua2hex(await api.cryptoicc.AES.encrypt(hcpKey.key, api.cryptoicc.utils.hex2ua(s)))]
 			}
 		))).map(([k, v]) => `${k} : ${v}`).join('\n'))
+	})
+
+vorpal
+	.command('checkhcpkey [from] [to]', 'Check that both parts of a hcpartykey are the same')
+	.action(async function(this: CommandInstance, args: Args) {
+		const key = (await api.hcpartyicc.getHealthcareParty(args.from)).hcPartyKeys![args.to]
+
+		const fromToFrom = await api.cryptoicc.decryptHcPartyKey(args.from, args.to, key[0], true)
+		const fromToTo = await api.cryptoicc.decryptHcPartyKey(args.from, args.to, key[1], false)
+
+		this.log(`${args.from} -> ${args.to} : ${fromToFrom.rawKey}`)
+		this.log(`${args.from} <- ${args.to} : ${fromToTo.rawKey}`)
+	})
+
+vorpal
+	.command('analctc [objectId]', 'Check that both parts of a hcpartykey are the same')
+	.action(async function(this: CommandInstance, args: Args) {
+		const hcp = await api.hcpartyicc.getCurrentHealthcareParty()
+		const parent = hcp.parentId && await api.hcpartyicc.getHealthcareParty(hcp.parentId)
+
+		const key = (await api.hcpartyicc.getHealthcareParty(hcp.id)).hcPartyKeys![hcp.id]
+		const keyParent = parent && (await api.hcpartyicc.getHealthcareParty(hcp.id)).hcPartyKeys![parent.id]
+
+		this.log('Analyse hcpKeys')
+
+		let selfKey1 = (await api.cryptoicc.decryptHcPartyKey(hcp.id, hcp.id, key[0], true)).rawKey
+		let selfKey2 = (await api.cryptoicc.decryptHcPartyKey(hcp.id, hcp.id, key[1], false)).rawKey
+
+		this.log(`${hcp.id} -> ${hcp.id} : ${selfKey1}`)
+		this.log(`${hcp.id} <- ${hcp.id} : ${selfKey2}`)
+
+		if (keyParent) {
+			let toParentKey1 = (await api.cryptoicc.decryptHcPartyKey(hcp.id, parent.id, keyParent[0], true)).rawKey
+			let toParentKey2 = (await api.cryptoicc.decryptHcPartyKey(hcp.id, parent.id, keyParent[1], false)).rawKey
+
+			this.log(`${hcp.id} -> ${parent.id} : ${toParentKey1}`)
+			this.log(`${hcp.id} <- ${parent.id} : ${toParentKey2}`)
+		}
+		const ctc = await api.rawContacticc.getContact(args.objectId)
+
+		const allDelegationLikes = uniqBy(flatMap([ctc.delegations[hcp.id], ctc.encryptionKeys[hcp.id], ctc.cryptedForeignKeys[hcp.id]].concat(parent ? [ctc.delegations[parent.id], ctc.encryptionKeys[parent.id], ctc.cryptedForeignKeys[parent.id]] : [])), x => x.owner + x.delegatedTo)
+
+		const keys = await allDelegationLikes.reduce(async (p,d: DelegationDto) => {
+			const keys = await p
+			const from = await api.hcpartyicc.getHealthcareParty(d.owner!)
+			const key = from.hcPartyKeys![d.delegatedTo!]
+			keys[`${d.owner!}->${d.delegatedTo}`] = await api.cryptoicc.decryptHcPartyKey(d.owner!, d.delegatedTo!, key[1], false)
+			this.log(`${d.owner!} -> ${d.delegatedTo!} : ${keys[`${d.owner!}->${d.delegatedTo}`].rawKey}`)
+			return keys
+		}, Promise.resolve({}))
+
+		api.cryptoicc.AES.debug = true
+
+		this.log('Analyse delegations')
+
+		const analyseDelegationLike = async (delegations: { [p: string]: Array<DelegationDto> }, hcpId: string , title: string) => {
+			this.log(`>>>>> ${title} : ${hcpId} <<<<<`)
+			await delegations[hcpId].reduce(async (p: Promise<any>, d: DelegationDto) => {
+				await p
+				this.log(`${title}: ${d.owner!} -> ${d.delegatedTo!} : ${api.cryptoicc.utils.ua2text(await api.cryptoicc.AES.decrypt(keys[`${d.owner!}->${d.delegatedTo}`].key, api.cryptoicc.utils.hex2ua(d.key!).buffer))}`)
+			}, Promise.resolve())
+
+			const decryptedAndImportedAesHcPartyKeys = await api.cryptoicc.decryptAndImportAesHcPartyKeysInDelegations(hcpId, delegations, false)
+			const collatedAesKeysFromDelegatorToHcpartyId = {} as { [key: string]: { delegatorId: string; key: CryptoKey; rawKey: string } }
+			decryptedAndImportedAesHcPartyKeys.forEach(k => {
+				collatedAesKeysFromDelegatorToHcpartyId[k.delegatorId] = k
+			})
+			this.log(`Hcparty keys from api : ${JSON.stringify(Object.keys(collatedAesKeysFromDelegatorToHcpartyId).map(k => ({ [k]: collatedAesKeysFromDelegatorToHcpartyId[k].rawKey })))}`)
+			this.log(`${title} from api : ${JSON.stringify(await api.cryptoicc.decryptKeyInDelegationLikes(delegations[hcpId], collatedAesKeysFromDelegatorToHcpartyId, ctc.id))}`)
+		}
+
+		await analyseDelegationLike(ctc.delegations, hcp.id, 'Delegation')
+		parent && await analyseDelegationLike(ctc.delegations, parent.id, 'Delegation')
+		await analyseDelegationLike(ctc.encryptionKeys, hcp.id, 'Encryption key')
+		parent && await analyseDelegationLike(ctc.encryptionKeys, parent.id, 'Encryption key')
+		await analyseDelegationLike(ctc.cryptedForeignKeys, hcp.id, 'Crypted foreign key')
+		parent && await analyseDelegationLike(ctc.cryptedForeignKeys, parent.id, 'Crypted foreign key')
+
+		this.log('Decrypt with hcp')
+		this.log(JSON.stringify((await api.contacticc.decrypt(hcp.id, [ctc]))[0].services!.map(svc => svc.content!.fr)))
+		if (parent) {
+			this.log('Decrypt with parent')
+			this.log(JSON.stringify((await api.contacticc.decrypt(parent.id, [ctc]))[0].services!.map(svc => svc.content!.fr)))
+		}
 	})
 
 vorpal

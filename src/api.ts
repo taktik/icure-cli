@@ -13,7 +13,7 @@ import {
 	UserDto,
 	iccBeKmehrApi,
 	IccFormXApi,
-	IccCalendarItemXApi, IccTimeTableXApi
+	IccCalendarItemXApi, IccTimeTableXApi, iccAuthApi, iccContactApi
 } from 'icc-api'
 import fetch from 'node-fetch'
 import * as WebCrypto from 'node-webcrypto-ossl'
@@ -35,12 +35,15 @@ export class Api {
 	private _patienticc: IccPatientXApi
 
 	private _currentUser: UserDto | null
+	private _rawContacticc: iccContactApi
 
 	constructor(host: string,
 				headers: { [key: string]: string },
 				fetchImpl: (input: RequestInfo, init?: RequestInit) => Promise<Response>
 	) {
 		this._currentUser = null
+
+		const authicc = new iccAuthApi(host, headers, fetchImpl)
 
 		this._entityreficc = new iccEntityrefApi(host, headers, fetchImpl)
 		this._usericc = new IccUserXApi(host, headers, fetchImpl)
@@ -49,13 +52,15 @@ export class Api {
 		this._contacticc = new IccContactXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._formicc = new IccFormXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._invoiceicc = new IccInvoiceXApi(host, headers, this._cryptoicc, this._entityreficc, fetchImpl)
-		this._documenticc = new IccDocumentXApi(host, headers, this._cryptoicc, fetchImpl)
+		this._documenticc = new IccDocumentXApi(host, headers, this._cryptoicc, authicc, fetchImpl)
 		this._helementicc = new IccHelementXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._classificationicc = new IccClassificationXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._timetableicc = new IccTimeTableXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._calendaritemicc = new IccCalendarItemXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._bekmehricc = new iccBeKmehrApi(host, headers, fetchImpl)
 		this._patienticc = new IccPatientXApi(host, headers, this._cryptoicc, this._contacticc, this._formicc, this._helementicc, this._invoiceicc, this._documenticc, this._hcpartyicc, this._classificationicc, this._calendaritemicc,['note'], fetchImpl)
+
+		this._rawContacticc = new iccContactApi(host, headers, fetchImpl)
 
 		this._usericc.getCurrentUser().then((u: UserDto) => this._currentUser = u)
 	}
@@ -118,5 +123,9 @@ export class Api {
 
 	get currentUser(): UserDto | null {
 		return this._currentUser
+	}
+
+	get rawContacticc(): iccContactApi {
+		return this._rawContacticc
 	}
 }
