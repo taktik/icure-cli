@@ -17,8 +17,16 @@ import {
 } from 'icc-api'
 import fetch from 'node-fetch'
 import * as WebCrypto from 'node-webcrypto-ossl'
+import { IccAccesslogXApi } from 'icc-api/dist/icc-x-api/icc-accesslog-x-api'
 
 export class Api {
+	get accesslogicc(): IccAccesslogXApi {
+		return this._accesslogicc
+	}
+
+	set accesslogicc(value: IccAccesslogXApi) {
+		this._accesslogicc = value
+	}
 	get rawAccessLogicc(): iccAccesslogApi {
 		return this._rawAccessLogicc
 	}
@@ -27,6 +35,7 @@ export class Api {
 		this._rawAccessLogicc = value
 	}
 	private _entityreficc: iccEntityrefApi
+	private _accesslogicc: IccAccesslogXApi
 	private _usericc: IccUserXApi
 	private _hcpartyicc: IccHcpartyXApi
 	private _cryptoicc: IccCryptoXApi
@@ -57,6 +66,7 @@ export class Api {
 		this._usericc = new IccUserXApi(host, headers, fetchImpl)
 		this._hcpartyicc = new IccHcpartyXApi(host, headers, fetchImpl)
 		this._cryptoicc = new IccCryptoXApi(host, headers, this._hcpartyicc, new iccPatientApi(host, headers, fetchImpl), new WebCrypto())
+		this._accesslogicc = new IccAccesslogXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._contacticc = new IccContactXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._formicc = new IccFormXApi(host, headers, this._cryptoicc, fetchImpl)
 		this._invoiceicc = new IccInvoiceXApi(host, headers, this._cryptoicc, this._entityreficc, fetchImpl)

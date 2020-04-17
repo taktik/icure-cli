@@ -291,11 +291,20 @@ vorpal
 		await analyseDelegationLike(ctc.cryptedForeignKeys, hcp.id, 'Crypted foreign key')
 		parent && await analyseDelegationLike(ctc.cryptedForeignKeys, parent.id, 'Crypted foreign key')
 
-		this.log('Decrypt with hcp')
-		this.log(JSON.stringify((await api.contacticc.decrypt(hcp.id, [ctc]))[0].services!.map(svc => svc.content!.fr)))
-		if (parent) {
-			this.log('Decrypt with parent')
-			this.log(JSON.stringify((await api.contacticc.decrypt(parent.id, [ctc]))[0].services!.map(svc => svc.content!.fr)))
+		if (ety === 'accesslog') {
+			this.log('Decrypt with hcp')
+			this.log(JSON.stringify((await api.accesslogicc.decrypt(hcp.id, [ctc]))[0]))
+			if (parent) {
+				this.log('Decrypt with parent')
+				this.log(JSON.stringify((await api.accesslogicc.decrypt(parent.id, [ctc]))[0]))
+			}
+		} else {
+			this.log('Decrypt with hcp')
+			this.log(JSON.stringify((await api.contacticc.decrypt(hcp.id, [ctc]))[0].services!.map(svc => svc.content!.fr)))
+			if (parent) {
+				this.log('Decrypt with parent')
+				this.log(JSON.stringify((await api.contacticc.decrypt(parent.id, [ctc]))[0].services!.map(svc => svc.content!.fr)))
+			}
 		}
 	})
 
