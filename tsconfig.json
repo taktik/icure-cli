@@ -1,32 +1,31 @@
 {
 	"compilerOptions": {
 		"target": "es6",
-		"module": "commonjs",
-		// Use esnext to enable lazy loading
+		"module": "esnext",
+        "lib": [
+          "es2020",
+          "es6",
+          "es5",
+          "dom"
+        ],
+		"sourceMap": true,
 		"moduleResolution": "node",
 		"experimentalDecorators": true,
-		//
 		"emitDecoratorMetadata": true,
-		/* Strict Type-Checking Options */
 		"strict": true,
-		/* Enable all strict type-checking options. */
 		"strictNullChecks": true,
 		"noImplicitThis": true,
-		// "noImplicitAny": true,
 		"allowSyntheticDefaultImports": true,
-		"lib": [
-			"es2017",
-			"es6",
-			"es5",
-			"dom"
-		],
-		"sourceMap": true,
-		"declaration": true,
-		/* Generates corresponding '.d.ts' file. */
 		"outDir": "./dist",
-		"baseUrl": "./"
+		"baseUrl": "./",
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true
 	},
-	"files": [
-		"./src/icure-cli.ts"
+	"include": [
+		"./src/*.ts"
 	]
 }

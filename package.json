@@ -3,72 +3,84 @@
 	"version": "1.0.0",
 	"description": "",
 	"scripts": {
-		"peg": "pegjs -o dist/icure-cli-parser.js grammar/icure-cli-parser.pegjs",
-		"build": "npm run tslint && tsc",
-		"start": "npm run build && node dist/icure-cli.js",
-		"tslint": "tslint src/*",
+		"build": "yarn run lint && tsc",
+		"start": "yarn run build && node --experimental-specifier-resolution=node dist/icure-cli.js",
+		"lint": "eslint . --fix --ext .ts --ignore-pattern \"**/*.d.ts\"",
 		"test": "jest",
-		"prepare": "rimraf dist && npm run build",
+		"prepare": "rimraf dist && yarn run build",
 		"precommit": "pretty-quick --staged",
-		"package": "npm run build && mkdirp dist/icure-cli/ && nexe dist/icure-cli.js -r grammar/icure-cli-parser.pegjs --output dist/icure-cli/icure-cli && mkdirp dist/icure-cli/node_modules/node-webcrypto-ossl/build/Release/ && cp node_modules/node-webcrypto-ossl/build/Release/nodessl.node dist/icure-cli/node_modules/node-webcrypto-ossl/build/Release/nodessl.node"
+		"package": "yarn run build && mkdirp dist/icure-cli/ && nexe dist/icure-cli.js --output dist/icure-cli/icure-cli"
 	},
 	"bin": "dist/icure-cli.js",
+	"type": "module",
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
-	"pkg": {
-		"assets": "./icure-cli-parser.pegjs"
-	},
 	"devDependencies": {
-		"@types/chai": "^4.1.7",
-		"@types/jest": "^24.0.19",
-		"@types/lodash": "^4.14.138",
-		"@types/node": "^12.7.5",
-		"@types/node-fetch": "^2.5.1",
-		"@types/pegjs": "^0.10.1",
-		"@types/pouchdb": "^6.3.3",
-		"@types/sinon": "^7.0.12",
+		"@types/isomorphic-fetch": "^0.0.36",
+		"@types/jest": "^27.4.1",
+		"@types/lodash": "^4.14.181",
+		"@types/node": "^17.0.23",
+		"@types/node-localstorage": "^1.3.0",
 		"@types/vorpal": "^1.12.0",
-		"@typescript-eslint/parser": "^1.9.0",
-		"chai": "^4.2.0",
-		"jest": "^24.9.0",
-		"karma": "^4.1.0",
-		"karma-chrome-launcher": "^2.2.0",
-		"karma-coverage": "^1.1.2",
-		"karma-mocha": "^1.3.0",
-		"karma-typescript": "^4.1.0",
-		"karma-typescript-es6-transform": "^4.1.0",
-		"mixin-deep": "^1.3.2",
-		"prettier": "^1.13.5",
-		"pretty-quick": "^1.6.0",
-		"rimraf": "^2.6.2",
-		"sinon": "^7.3.1",
-		"ts-jest": "^24.1.0",
-		"ts-node": "^8.4.1",
-		"tslint": "^5.20.0",
-		"tslint-config-standard": "^8.0.1",
-		"typescript": "^3.6.3"
+		"@typescript-eslint/eslint-plugin": "^5.18.0",
+		"@typescript-eslint/eslint-plugin-tslint": "^5.18.0",
+		"@typescript-eslint/parser": "^5.18.0",
+		"eslint": "^7.24.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-jsdoc": "^39.0.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"jest": "^27.5.1",
+		"mixin-deep": "^2.0.1",
+		"prettier": "^2.6.2",
+		"pretty-quick": "^3.1.3",
+		"rimraf": "^3.0.2",
+		"typescript": "^4.6.3"
 	},
 	"dependencies": {
+		"@icure/api": "^4.0.8",
+		"@icure/medical-device-sdk": "^0.1.18",
 		"colors": "^1.4.0",
 		"date-fns": "^2.3.0",
-		"icc-api": "^1.0.228",
-		"lodash": "^4.17.15",
-		"mkdirp": "^0.5.1",
-		"nexe": "^3.3.2",
-		"node-fetch": "^2.6.0",
-		"node-json-color-stringify": "^1.1.0",
-		"node-localstorage": "^1.3.1",
-		"node-webcrypto-ossl": "^1.0.48",
+		"isomorphic-fetch": "^3.0.0",
+		"lodash": "^4.17.20",
+		"mkdirp": "^1.0.4",
+		"nexe": "^3.3.7",
+		"node-localstorage": "^2.2.1",
 		"pegjs": "^0.10.0",
-		"pkg": "^4.4.0",
+		"pkg": "^5.6.0",
 		"vorpal": "^1.12.0",
-		"xlsx": "^0.15.1",
+		"xlsx": "^0.18.5",
 		"xml2js": "^0.4.22"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.js": [
+			"eslint --fix",
+			"git add"
+		],
+		"*.jsx": [
+			"eslint --fix",
+			"git add"
+		],
+		"*.ts": [
+			"eslint --fix",
+			"git add"
+		],
+		"*.tsx": [
+			"eslint --fix",
+			"git add"
+		]
 	},
 	"prettier": {
 		"semi": false,
 		"printWidth": 100,
 		"singleQuote": true
-	}
+	},
+	"packageManager": "yarn@3.2.0"
 }
