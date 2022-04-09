@@ -25,26 +25,25 @@ import {
   IccUserXApi,
 } from '@icure/api'
 import { webcrypto } from 'crypto'
-import { LocalStorage } from 'node-localstorage'
-import * as os from 'os'
 
 import Vorpal, { Args, CommandInstance } from 'vorpal'
 
-import { cmdSearchPatient } from './cmd-search-patient'
-import { cmdCheckDelegationsConsistency } from './cmd-check-delegations-consistency'
-import { cmdShare } from './cmd-share'
-import { cmdShareAll } from './cmd-share-all'
-import { cmdShamir } from './cmd-shamir'
-import { cmdCheckHcpKey } from './cmd-check-hcp-key'
-import { cmdObjectConsistency } from './cmd-object-consistency'
-import { cmdListPrivateKeys } from './cmd-list-private-keys'
-import { cmdUserHcp } from './cmd-user-hcp'
+import { cmdSearchPatient } from './cmd-search-patient.js'
+import { cmdCheckDelegationsConsistency } from './cmd-check-delegations-consistency.js'
+import { cmdShare } from './cmd-share.js'
+import { cmdShareAll } from './cmd-share-all.js'
+import { cmdShamir } from './cmd-shamir.js'
+import { cmdCheckHcpKey } from './cmd-check-hcp-key.js'
+import { cmdObjectConsistency } from './cmd-object-consistency.js'
+import { cmdListPrivateKeys } from './cmd-list-private-keys.js'
+import { cmdUserHcp } from './cmd-user-hcp.js'
 import { IccDeviceApi } from '@icure/api/icc-api/api/IccDeviceApi'
 
 const vorpal = new Vorpal()
 
+import { LocalStorage } from 'node-localstorage'
+import * as os from 'os'
 const tmp = os.tmpdir()
-
 console.log('Saving keys in ' + tmp)
 ;(global as any).localStorage = new LocalStorage(tmp, 5 * 1024 * 1024 * 1024)
 ;(global as any).Storage = ''

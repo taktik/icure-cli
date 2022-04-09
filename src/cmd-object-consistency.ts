@@ -29,7 +29,7 @@ import {
 } from '@icure/api'
 import { IccDeviceApi } from '@icure/api/icc-api/api/IccDeviceApi'
 import { Args, CommandInstance } from 'vorpal'
-import { uniqWith } from './utils'
+import { uniqWith } from './utils.js'
 
 export const cmdObjectConsistency = async (
   cmd: CommandInstance,

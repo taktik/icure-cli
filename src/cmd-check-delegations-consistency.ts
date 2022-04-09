@@ -6,7 +6,7 @@ import {
   ListOfIds,
 } from '@icure/api'
 import { Args, CommandInstance } from 'vorpal'
-import { contactsToPatientIds } from './utils'
+import { contactsToPatientIds } from './utils.js'
 
 export const cmdCheckDelegationsConsistency = async (
   cmd: CommandInstance,
